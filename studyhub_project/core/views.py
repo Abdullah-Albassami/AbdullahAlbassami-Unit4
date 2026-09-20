@@ -157,6 +157,10 @@ def add_favorite(request, id):
 
 
 def remove_favorite(request, id):
+
+    if request.method != "POST":
+        raise Http404("Invalid request")
+
     favorites_list = request.session.get("favorites", [])
 
     if id in favorites_list:

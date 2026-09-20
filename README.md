@@ -1,4 +1,3 @@
-
 # StudyHub
 
 StudyHub is a learning resources portal built with Django. It allows users to explore educational resources, save favorites, customize their theme, and submit feedback with optional screenshot attachments.
@@ -7,47 +6,55 @@ The project demonstrates Django fundamentals, including URL routing, views, temp
 
 ## Features
 
-- Browse educational resources, including articles, videos, and documentation.
-- View individual resource details and access external learning materials.
-- Filter resources using query parameters.
-- Add and remove favorite resources.
-- Switch between light and dark themes.
-- Submit feedback with form validation.
-- Optionally attach screenshots to feedback.
-- Display confirmation messages and handle invalid resource IDs.
+* Browse educational resources, including articles, videos, and documentation.
+* View individual resource details and access external learning materials.
+* Filter resources using query parameters.
+* Add and remove favorite resources.
+* Switch between light and dark themes.
+* Submit feedback with form validation.
+* Optionally attach screenshots to feedback.
+* Display confirmation messages and handle invalid resource IDs.
 
 ## Technologies
 
-- Python
-- Django 6.1.1
-- HTML and CSS
-- Pillow
-- JSON
+* Python
+* Django 6.1.1
+* HTML and CSS
+* Pillow
+* JSON
 
 SQLite is used for Django's built-in session management. Learning resources are stored in a Python list, and feedback submissions are stored in a JSON file.
 
 ## Setup
 
-### 1. Create and activate a virtual environment
+Run the following commands from the repository root.
+
+### 1. Navigate to the Django project directory
+
+```bash
+cd studyhub_project
+```
+
+### 2. Create and activate a virtual environment
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-### 2. Install dependencies
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Apply migrations
+### 4. Apply migrations
 
 ```bash
 python manage.py migrate
 ```
 
-### 4. Start the development server
+### 5. Start the development server
 
 ```bash
 python manage.py runserver
@@ -61,10 +68,12 @@ http://127.0.0.1:8000/
 
 ```text
 AbdullahAlbassami-Unit4/
+├── .gitignore
+├── README.md
+├── screenshots/
 └── studyhub_project/
     ├── manage.py
     ├── requirements.txt
-    ├── .gitignore
     ├── studyhub_project/
     │   ├── settings.py
     │   ├── urls.py
@@ -99,21 +108,21 @@ AbdullahAlbassami-Unit4/
         └── feedback.json
 ```
 
-The `media/` directory and `feedback.json` are generated or populated during use and are excluded from Git.
+The `media/` directory and `data/feedback.json` are created or populated during use and are excluded from Git.
 
 ## URLs and Views
 
-| URL | Description |
-|-----|-------------|
-| `/` | Home page |
-| `/resources/` | Browse learning resources |
-| `/resources/<int:id>/` | View a specific resource |
-| `/favorites/` | View favorite resources |
-| `/favorites/add/<int:id>/` | Add a resource to favorites |
+| URL                           | Description                      |
+| ----------------------------- | -------------------------------- |
+| `/`                           | Home page                        |
+| `/resources/`                 | Browse learning resources        |
+| `/resources/<int:id>/`        | View a specific resource         |
+| `/favorites/`                 | View favorite resources          |
+| `/favorites/add/<int:id>/`    | Add a resource to favorites      |
 | `/favorites/remove/<int:id>/` | Remove a resource from favorites |
-| `/preferences/` | Manage theme preferences |
-| `/feedback/` | Submit feedback |
-| `/feedback/thanks/` | Feedback confirmation page |
+| `/preferences/`               | Manage theme preferences         |
+| `/feedback/`                  | Submit feedback                  |
+| `/feedback/thanks/`           | Feedback confirmation page       |
 
 The application uses named URL patterns and app-level routing through `core/urls.py`.
 
@@ -149,11 +158,11 @@ The feedback form is implemented using Django's `forms.Form`.
 
 It includes:
 
-- Name: Required, with custom validation.
-- Email: Required, with email format validation.
-- Message: Required, with a minimum length of 10 characters.
-- Rating: Optional, from 1 to 5.
-- Screenshot: Optional, accepting JPEG and PNG images up to 2 MB.
+* Name: Required, with custom validation.
+* Email: Required, with email format validation.
+* Message: Required, with a minimum length of 10 characters.
+* Rating: Optional, from 1 to 5.
+* Screenshot: Optional, accepting JPEG and PNG images up to 2 MB.
 
 The form uses CSRF protection, field validation, and `cleaned_data`.
 
@@ -183,51 +192,61 @@ Uploaded media files are excluded from Git.
 
 ## Error Handling
 
-- Invalid resource IDs return an HTTP 404 response.
-- Invalid form submissions display field-specific validation errors.
-- Unsupported or oversized image uploads are rejected.
-- Invalid theme cookie values default to the light theme.
-- Duplicate favorite IDs are prevented.
-
+* Invalid resource IDs return an HTTP 404 response.
+* Invalid form submissions display field-specific validation errors.
+* Unsupported or oversized image uploads are rejected.
+* Invalid theme cookie values default to the light theme.
+* Duplicate favorite IDs are prevented.
 
 ## Screenshots
 
 ### Home Page
+
 ![Home Page](screenshots/home.png)
 
 ### Resource List
+
 ![Resource List](screenshots/resource_list.png)
 
 ### Resource Detail
+
 ![Resource Detail](screenshots/resource_detail.png)
 
 ### Favorites
+
 ![Favorites](screenshots/favorites.png)
 
+### Preferences
+
+![Preferences](screenshots/preferences.png)
+
 ### Light and Dark Themes
+
 ![Light Theme](screenshots/light_theme.png)
 
 ![Dark Theme](screenshots/dark_theme.png)
 
 ### Feedback Validation
+
 ![Feedback Validation](screenshots/feedback_errors.png)
 
 ### Feedback Success
+
 ![Feedback Success](screenshots/feedback_success.png)
 
 ## Known Limitations
 
-- Learning resources are stored in a Python list rather than a database.
-- Favorites are session-based and are not associated with registered user accounts.
-- Feedback is stored in a JSON file rather than a database.
-- There is no user registration or login system.
-- The application is intended for local development and learning, not production deployment.
+* Learning resources are stored in a Python list rather than a database.
+* Favorites are session-based and are not associated with registered user accounts.
+* Feedback is stored in a JSON file rather than a database.
+* There is no user registration or login system.
+* The application is intended for local development and learning, not production deployment.
 
 ## Future Improvements
 
-- Store learning resources and feedback using Django database models.
-- Add user registration, login, and logout.
-- Associate favorites with individual user accounts.
-- Add an administrative interface for managing learning resources and feedback.
-- Improve image management and feedback storage for production use.
-- Add search and additional resource filtering options.
+* Store learning resources and feedback using Django database models.
+* Add user registration, login, and logout.
+* Associate favorites with individual user accounts.
+* Add an administrative interface for managing learning resources and feedback.
+* Improve image management and feedback storage for production use.
+* Add search and additional resource filtering options.
