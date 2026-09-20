@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+Thank You | StudyHub
+{% endblock %}
+
+{% block content %}
+
+<div class="success-card">
+
+    <h2>Thank You!</h2>
+
+    <p>
+        Your feedback was submitted successfully.
+    </p>
+
+    <a
+        class="button"
+        href="{% url 'core:home' %}"
+    >
+        Back to Home
+    </a>
+
+</div>
+
+{% endblock %}

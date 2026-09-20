@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}
+Resources | StudyHub
+{% endblock %}
+
+{% block content %}
+
+<h2>Learning Resources</h2>
+
+<div class="filters">
+    <a href="{% url 'core:resource_list' %}">
+        All
+    </a>
+
+    <a href="{% url 'core:resource_list' %}?type=Article">
+        Articles
+    </a>
+
+    <a href="{% url 'core:resource_list' %}?type=Documentation">
+        Documentation
+    </a>
+
+    <a href="{% url 'core:resource_list' %}?type=Video">
+        Videos
+    </a>
+</div>
+
+{% if selected_type %}
+    <p>
+        Showing: {{ selected_type }}
+    </p>
+{% endif %}
+
+<div class="resource-grid">
+
+    {% for resource in resources %}
+
+        <article class="card">
+
+            <span class="resource-type">
+                {{ resource.type }}
+            </span>
+
+            <h3>{{ resource.title }}</h3>
+
+            <p>
+                {{ resource.description }}
+            </p>
+
+            <a
+                class="button"
+                href="{% url 'core:resource_detail' resource.id %}"
+            >
+                View Resource
+            </a>
+
+        </article>
+
+    {% empty %}
+
+        <p>No resources found.</p>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

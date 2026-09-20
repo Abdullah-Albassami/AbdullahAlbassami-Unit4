@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Home | StudyHub
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div>
+
+            <h2>Welcome to StudyHub</h2>
+
+            <p>
+                Browse useful learning resources for programming,
+                web development, Django, and Git.
+            </p>
+
+            <p>
+                Available resources: {{ resource_count }}
+            </p>
+
+            <a
+                class="button"
+                href="{% url 'core:resource_list' %}"
+            >
+                Browse Resources
+            </a>
+
+        </div>
+
+        <img
+            src="{% static 'images/sample_resource.jpg' %}"
+            alt="Learning resource"
+            class="hero-image"
+        >
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}
+Favorites | StudyHub
+{% endblock %}
+
+{% block content %}
+
+<h2>Favorite Resources</h2>
+
+<div class="resource-grid">
+
+    {% for resource in resources %}
+
+        <article class="card">
+
+            <span class="resource-type">
+                {{ resource.type }}
+            </span>
+
+            <h3>{{ resource.title }}</h3>
+
+            <p>
+                {{ resource.description }}
+            </p>
+
+            <a
+                class="button"
+                href="{% url 'core:resource_detail' resource.id %}"
+            >
+                View
+            </a>
+
+            <form
+                action="{% url 'core:remove_favorite' resource.id %}"
+                method="post"
+            >
+                {% csrf_token %}
+
+                <button type="submit" class="secondary-button">
+                    Remove
+                </button>
+            </form>
+
+        </article>
+
+    {% empty %}
+
+        <div class="empty-state">
+
+            <h3>No favorites yet</h3>
+
+            <p>
+                Add resources to your favorites and they will appear here.
+            </p>
+
+            <a
+                class="button"
+                href="{% url 'core:resource_list' %}"
+            >
+                Browse Resources
+            </a>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

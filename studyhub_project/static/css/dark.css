@@ -1,0 +1,65 @@
+body {
+    background-color: #111827;
+    color: #d1d5db;
+}
+
+header,
+footer {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+nav a,
+.tabs a {
+    color: #cbd5e1;
+}
+
+nav a:hover,
+.tabs a:hover {
+    color: #ffffff;
+}
+
+.button,
+button {
+    background-color: #475569;
+    color: #ffffff;
+}
+
+.button:hover,
+button:hover {
+    background-color: #64748b;
+}
+
+.secondary-button {
+    background-color: #374151;
+}
+
+.filters a {
+    background-color: #263244;
+    color: #d1d5db;
+}
+
+.card,
+.resource-detail,
+.form-card,
+.success-card,
+.empty-state {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+.resource-type {
+    color: #94a3b8;
+}
+
+input,
+textarea,
+select {
+    background-color: #111827;
+    color: #e5e7eb;
+    border-color: #4b5563;
+}
+
+.error {
+    color: #fca5a5;
+}

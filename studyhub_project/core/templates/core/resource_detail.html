@@ -1,0 +1,85 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+{{ resource.title }} | StudyHub
+{% endblock %}
+
+{% block content %}
+
+<article class="resource-detail">
+
+    <p class="resource-type">
+        {{ resource.type }}
+    </p>
+
+    <h2>{{ resource.title }}</h2>
+
+    <div class="tabs">
+
+        <a href="?tab=details">
+            Details
+        </a>
+
+        <a href="?tab=link">
+            Resource Link
+        </a>
+
+    </div>
+
+    {% if tab == "link" %}
+
+        <h3>External Resource</h3>
+
+        <p>
+            Visit the external learning resource below.
+        </p>
+
+        <a
+            class="button"
+            href="{{ resource.url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Open Resource
+        </a>
+
+    {% else %}
+
+        <h3>About this resource</h3>
+
+        <p>
+            {{ resource.description }}
+        </p>
+
+    {% endif %}
+
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="message {{ message.tags }}">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+
+    <form
+        action="{% url 'core:add_favorite' resource.id %}"
+        method="post"
+    >
+        {% csrf_token %}
+
+        <button type="submit">
+            Add to Favorites
+        </button>
+
+    </form>
+
+</article>
+
+{% endblock %}
